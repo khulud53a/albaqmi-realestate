@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>مجموعة عايض البقمي للتطوير والاستثمار العقاري</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   RESET & TOKENS
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --teal:   #03363e;
+  --teal2:  #054d58;
+  --gold:   #c0a96b;
+  --gold2:  #e8d5a3;
+  --ink:    #111111;
+  --mid:    #3d3d3d;
+  --muted:  #7a7a7a;
+  --border: #e4e4e4;
+  --bg:     #f7f7f5;
+  --white:  #ffffff;
+  --font:   'IBM Plex Sans Arabic', sans-serif;
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--font);
+  background:var(--white);
+  color:var(--ink);
+  overflow-x:hidden;
+  direction:rtl;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+@supports(-webkit-touch-callout:none){
+  .hero{min-height:-webkit-fill-available}
+}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ══ UTILITY ══ */
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px;width:100%}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.rv.up{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(28px);transition:opacity .7s ease,transform .7s ease}
+.rv-l.up{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(-28px);transition:opacity .7s ease,transform .7s ease}
+.rv-r.up{opacity:1;transform:none}
+
+/* ══ NAV ══ */
+.nav{
+  position:fixed;top:0;right:0;left:0;z-index:900;
+  height:90px;
+  display:flex;align-items:center;
+  background:rgba(255,255,255,.88);
+  overflow:visible;
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+  padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+  overflow:visible;
+}
+.nav.on{border-color:var(--border)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+
+/* شعار الـ nav */
+.nav-logo img{height:180px;width:auto;object-fit:contain;display:block;position:relative;z-index:10}
+
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{
+  font-size:.82rem;font-weight:500;color:var(--mid);
+  padding:7px 13px;border-radius:8px;
+  transition:color .2s,background .2s;
+}
+.nav-links a:hover{color:var(--teal);background:rgba(3,54,62,.06)}
+.nav-cta{
+  background:var(--teal)!important;color:var(--white)!important;
+  border-radius:30px!important;padding:9px 22px!important;
+  font-weight:600!important;
+}
+.nav-cta:hover{background:var(--teal2)!important}
+
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:22px;height:1.5px;background:var(--ink);border-radius:1px;transition:.3s}
+
+/* ══ DRAWER ══ */
+.drawer{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  flex-direction:column;align-items:center;justify-content:center;gap:36px;
+}
+.drawer.open{display:flex}
+.drawer a{font-size:1.5rem;font-weight:600;color:var(--ink)}
+.drawer a:hover{color:var(--teal)}
+.d-close{position:absolute;top:24px;left:24px;background:none;border:none;font-size:1.4rem;color:var(--muted);cursor:pointer}
+
+/* ══ HERO ══ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+}
+/* صورة الخلفية الكاملة */
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('works/desk2.png') center center/cover no-repeat;
+}
+/* Overlay متدرج */
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(3,54,62,.55) 0%,
+    rgba(3,54,62,.65) 35%,
+    rgba(3,54,62,.88) 70%,
+    rgba(3,54,62,.97) 100%
+  );
+}
+.hero-body{
+  position:relative;z-index:2;
+  padding:140px 0 0;
+}
+/* الشعار فوق النص */
+.hero-logomark{
+  margin-bottom:36px;
+}
+.hero-logomark img{
+  height:90px;width:auto;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.9;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:500;letter-spacing:.14em;
+  color:var(--gold2);
+  border:1px solid rgba(200,180,135,.35);
+  padding:6px 16px;border-radius:30px;
+  margin-bottom:24px;
+  text-transform:uppercase;
+}
+.hero-h1{
+  font-size:clamp(2.2rem,4.5vw,3.6rem);
+  font-weight:700;line-height:1.45;
+  color:var(--white);
+  letter-spacing:-.02em;
+  margin-bottom:20px;
+}
+.hero-h1 em{
+  font-style:normal;
+  color:var(--gold2);
+}
+.hero-sub{
+  font-size:1rem;font-weight:300;
+  color:rgba(255,255,255,.72);
+  line-height:1.9;
+  max-width:520px;
+  margin-bottom:40px;
+}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:64px}
+
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--font);font-size:.9rem;font-weight:600;
+  padding:13px 28px;border-radius:30px;
+  cursor:pointer;border:none;
+  transition:all .25s;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),#a8894e);
+  color:var(--ink);
+  box-shadow:0 8px 24px rgba(192,169,107,.3);
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(192,169,107,.4)}
+.btn-outline-w{
+  border:1.5px solid rgba(255,255,255,.3);
+  color:var(--white);background:transparent;
+}
+.btn-outline-w:hover{border-color:var(--gold2);color:var(--gold2)}
+
+/* شريط الإحصائيات أسفل الـ hero */
+.hero-stats{
+  display:flex;justify-content:center;
+  border-top:1px solid rgba(255,255,255,.12);
+  position:relative;z-index:2;
+}
+.hs{
+  padding:28px 48px;
+  border-left:1px solid rgba(255,255,255,.1);
+  text-align:center;
+  transition:background .25s;
+  flex:0 0 auto;
+}
+.hs:last-child{border-left:none}
+.hs:hover{background:rgba(255,255,255,.05)}
+.hs-n{font-size:2rem;font-weight:700;color:var(--gold2);line-height:1}
+.hs-l{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.55);margin-top:6px}
+
+/* ══ SECTIONS ══ */
+.sec{padding:96px 0}
+.sec-sm{padding:72px 0}
+.bg-soft{background:var(--bg)}
+
+.eyebrow{
+  display:block;
+  font-size:.72rem;font-weight:600;letter-spacing:.16em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:14px;
+}
+h2.title{
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;line-height:1.25;
+  color:var(--ink);letter-spacing:-.02em;
+}
+h2.title em{font-style:normal;color:var(--teal)}
+.dash{width:44px;height:2px;background:var(--gold);border-radius:1px;margin:18px 0 24px}
+.body{font-size:.97rem;font-weight:300;color:var(--muted);line-height:1.9;max-width:560px}
+
+/* ══ ABOUT ══ */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+
+.about-img-col{position:relative}
+/* الصورة الرئيسية */
+.ab-main{
+  width:100%;height:600px;
+  object-fit:cover;object-position:center 8%;
+  border-radius:24px;
+  box-shadow:0 24px 60px rgba(0,0,0,.12);
+}
+/* صورة ثانية صغيرة في الأسفل اليمين */
+.ab-sub{
+  position:absolute;
+  bottom:-32px;right:-24px;
+  width:200px;height:200px;
+  object-fit:cover;object-position:center;
+  border-radius:18px;
+  border:5px solid var(--white);
+  box-shadow:0 16px 40px rgba(0,0,0,.14);
+}
+/* شريط ذهبي */
+.ab-line{
+  position:absolute;top:40px;left:-16px;
+  width:4px;height:200px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+  border-radius:2px;
+}
+
+/* ══ COUNTERS ══ */
+.counters-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  margin-top:40px;
+}
+.cnt{
+  background:var(--white);padding:28px 20px;
+  text-align:center;
+}
+.cnt-n{font-size:2.2rem;font-weight:700;color:var(--teal);line-height:1}
+.cnt-n sup{font-size:1.1rem;color:var(--gold)}
+.cnt-l{font-size:.78rem;font-weight:400;color:var(--muted);margin-top:6px}
+
+/* ══ MISSION ══ */
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.mc{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;padding:28px 22px;
+  transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.mc::before{
+  content:'';position:absolute;bottom:0;right:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+  transform:scaleX(0);transform-origin:right;
+  transition:transform .3s;
+}
+.mc:hover{box-shadow:0 12px 36px rgba(0,0,0,.07);transform:translateY(-4px)}
+.mc:hover::before{transform:scaleX(1)}
+.mc-num{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--teal);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:700;
+  margin-bottom:16px;
+}
+.mc i{font-size:1.4rem;color:var(--teal);margin-bottom:12px;display:block}
+.mc h4{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.55}
+
+/* ══ GOAL BAND ══ */
+.goal-band{
+  background:var(--teal);
+  border-radius:28px;
+  padding:56px 52px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.goal-band::after{
+  content:'';position:absolute;bottom:-80px;left:-80px;
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(255,255,255,.03);
+}
+.goal-band .eyebrow{color:rgba(255,255,255,.45)}
+.goal-band h2.title{color:var(--white)}
+.goal-band h2.title em{color:var(--gold2)}
+.goal-band .body{color:rgba(255,255,255,.65)}
+.goal-band .dash{background:var(--gold)}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feat{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:12px 14px;
+  color:rgba(255,255,255,.8);font-size:.85rem;font-weight:400;
+  transition:all .25s;
+}
+.feat:hover{background:rgba(255,255,255,.1)}
+.feat i{color:var(--gold);font-size:.85rem;flex-shrink:0}
+
+/* ══ SERVICES ══ */
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc{
+  background:var(--bg);
+  border-radius:16px;padding:28px 20px;
+  text-align:center;
+  border:1px solid transparent;
+  transition:all .3s;
+}
+.svc:hover{
+  background:var(--white);
+  border-color:var(--border);
+  box-shadow:0 10px 32px rgba(0,0,0,.06);
+  transform:translateY(-4px);
+}
+.svc-ic{
+  width:52px;height:52px;
+  background:rgba(3,54,62,.07);
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;color:var(--teal);
+  margin:0 auto 16px;
+  transition:all .3s;
+}
+.svc:hover .svc-ic{background:var(--teal);color:var(--white)}
+.svc h3{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.svc p{font-size:.78rem;font-weight:300;color:var(--muted);line-height:1.7}
+
+/* ── Marketing ── */
+.mkt-wrap{
+  margin-top:48px;
+  border:1px solid var(--border);
+  border-radius:24px;padding:48px 44px;
+  background:var(--white);
+}
+.mkt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}
+.mkt-c{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;border-radius:12px;
+  border:1px solid var(--border);
+  transition:all .25s;
+}
+.mkt-c:hover{border-color:var(--teal);background:rgba(3,54,62,.03)}
+.mkt-c .mi{
+  width:40px;height:40px;flex-shrink:0;
+  background:rgba(3,54,62,.06);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:1rem;
+}
+.mkt-c h4{font-size:.85rem;font-weight:500;color:var(--ink)}
+
+/* ══ WHY ══ */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+/* صورة القسم */
+.why-img-col{position:relative}
+.why-main{
+  width:100%;height:600px;
+  object-fit:cover;object-position:center 8%;
+  border-radius:24px;
+  box-shadow:0 20px 56px rgba(0,0,0,.12);
+}
+.why-overlay{
+  position:absolute;inset:0;border-radius:24px;
+  background:linear-gradient(to top,rgba(3,54,62,.7) 0%,transparent 55%);
+}
+.why-bottom{
+  position:absolute;bottom:28px;right:28px;left:28px;
+  display:flex;align-items:center;justify-content:space-between;
+  z-index:2;
+}
+.why-bottom img{height:48px;filter:brightness(0) invert(1);opacity:.9}
+.why-badge{
+  background:var(--gold);
+  border-radius:12px;padding:10px 18px;text-align:center;
+}
+.why-badge .bn{font-size:1.6rem;font-weight:700;color:var(--ink);line-height:1}
+.why-badge .bl{font-size:.68rem;font-weight:500;color:rgba(24,24,24,.7);margin-top:3px}
+
+.why-list{display:flex;flex-direction:column;gap:14px}
+.wr{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:18px 20px;border-radius:14px;
+  border:1px solid var(--border);
+  transition:all .25s;
+}
+.wr:hover{border-color:var(--teal);box-shadow:0 6px 20px rgba(3,54,62,.07);transform:translateX(-3px)}
+.wr-ic{
+  width:42px;height:42px;flex-shrink:0;
+  background:var(--bg);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--teal);
+}
+.wr-tx h4{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+.wr-tx p{font-size:.8rem;font-weight:300;color:var(--muted);line-height:1.7}
+
+/* ══ STATS ══ */
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:800px;margin:0 auto}
+.sc{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:18px;padding:36px 20px;
+  text-align:center;transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.sc::before{
+  content:'';position:absolute;top:0;right:0;left:0;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--gold));
+}
+.sc:hover{box-shadow:0 10px 32px rgba(0,0,0,.07);transform:translateY(-4px)}
+.sc i{font-size:1.6rem;color:var(--teal);margin-bottom:12px;display:block}
+.sc-n{font-size:2.6rem;font-weight:700;color:var(--teal);line-height:1}
+.sc-n sup{font-size:1.2rem;color:var(--gold)}
+.sc-l{font-size:.82rem;font-weight:400;color:var(--muted);margin-top:8px}
+
+/* ══ CONTACT ══ */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:start}
+
+/* الجانب الأيسر — معلومات التواصل */
+.ci{
+  background:var(--teal);
+  border-radius:24px;
+  padding:44px 36px;
+}
+.ci h3{
+  font-size:1.5rem;font-weight:700;
+  color:var(--white);
+  margin-bottom:12px;line-height:1.4;
+}
+.ci p{
+  font-size:.9rem;font-weight:300;
+  color:rgba(255,255,255,.65);
+  line-height:1.85;margin-bottom:36px;
+}
+.ch-btns{display:flex;flex-direction:column;gap:14px}
+.ch{
+  display:flex;align-items:center;gap:14px;
+  padding:15px 20px;border-radius:14px;
+  font-weight:600;font-size:.9rem;
+  transition:all .25s;line-height:1;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;
+}
+.ch:hover{background:rgba(255,255,255,.18);transform:translateX(-4px)}
+.ch-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.ch.wa .ch-icon{background:#25d366}
+.ch.ph .ch-icon{background:var(--gold)}
+.ch.xb .ch-icon{background:#000}
+.ch-txt{display:flex;flex-direction:column;gap:3px}
+.ch-lbl{font-size:.7rem;font-weight:400;color:rgba(255,255,255,.5);letter-spacing:.06em}
+.ch-val{font-size:.92rem;font-weight:600;color:#fff}
+
+/* الجانب الأيمن — النموذج */
+.cf{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:24px;padding:40px 36px;
+}
+.cf h3{
+  font-size:1.15rem;font-weight:700;
+  color:var(--ink);margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.78rem;font-weight:600;color:var(--mid);margin-bottom:7px}
+.fg input,.fg textarea{
+  width:100%;padding:12px 16px;
+  border:1.5px solid var(--border);border-radius:12px;
+  font-family:var(--font);font-size:.88rem;color:var(--ink);
+  background:var(--bg);outline:none;
+  transition:border-color .2s,background .2s;
+}
+.fg input:focus,.fg textarea:focus{border-color:var(--teal);background:#fff}
+.fg textarea{resize:vertical;min-height:120px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsub{
+  width:100%;padding:14px;
+  background:var(--teal);color:#fff;
+  border:none;border-radius:12px;
+  font-family:var(--font);font-size:.92rem;font-weight:600;
+  cursor:pointer;transition:all .25s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  margin-top:4px;
+}
+.fsub:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 10px 24px rgba(3,54,62,.22)}
+
+/* ══ FOOTER ══ */
+footer{background:#0f0f0f;padding:64px 0 0;overflow:visible}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:44px;overflow:visible}
+.ft-logo{
+  height:180px;width:auto;max-width:100%;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+  margin-bottom:20px;
+  display:block;
+  margin-right:0;
+}
+.ft-p{font-size:.84rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.9}
+.ft-socs{display:flex;gap:8px;margin-top:22px}
+.ft-soc{
+  width:36px;height:36px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,.45);font-size:.82rem;
+  transition:all .25s;
+}
+.ft-soc:hover{background:var(--gold);border-color:var(--gold);color:var(--ink);transform:translateY(-2px)}
+.ft-col h4{
+  font-size:.85rem;font-weight:600;color:#fff;
+  margin-bottom:18px;padding-bottom:10px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-links a{
+  font-size:.82rem;font-weight:300;
+  color:rgba(255,255,255,.4);
+  display:flex;align-items:center;gap:6px;
+  transition:color .2s;
+}
+.ft-links a:hover{color:var(--gold)}
+.ft-links a::before{content:'›';font-size:.9rem}
+.ft-btm{
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:22px 0;text-align:center;
+  font-size:.78rem;font-weight:300;color:rgba(255,255,255,.25);
+}
+.ft-btm strong{color:var(--gold);font-weight:500}
+
+/* ══ FLOAT WA ══ */
+.float-wa{
+  position:fixed;bottom:28px;left:28px;z-index:800;
+  width:52px;height:52px;border-radius:50%;
+  background:#25d366;color:#fff;font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(37,211,102,.35);
+  animation:bob 3s ease-in-out infinite;
+}
+.float-wa:hover{transform:scale(1.1)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .mkt-cards{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:768px){
+  /* NAV */
+  .nav-links{display:none}
+  .burger{display:flex}
+  .nav{height:64px;overflow:hidden}
+  .nav-logo img{height:140px;position:static}
+
+  /* HERO */
+  .hero{min-height:100svh}
+  .hero-body{padding:40px 0 0;text-align:center}
+  .hero-tag{margin:0 auto 20px}
+  .hero-h1{font-size:clamp(2.5rem,9vw,3.2rem);line-height:1.45}
+  .hero-sub{font-size:.88rem;margin:0 auto 32px;max-width:320px}
+  .hero-btns{
+    flex-direction:column;align-items:center;
+    gap:10px;margin-bottom:40px;
+  }
+  .hero-btns .btn{width:100%;max-width:320px;justify-content:center;padding:14px 20px}
+  .hero-stats{flex-direction:row;justify-content:center;flex-wrap:nowrap}
+  .hs{padding:18px 20px;flex:1;text-align:center}
+  .hs-n{font-size:1.5rem}
+  .hs-l{font-size:.68rem}
+
+  /* SECTIONS */
+  .sec{padding:56px 0}
+  .wrap{padding:0 18px}
+
+  /* GRIDS → SINGLE COLUMN */
+  .about-grid,.why-grid,.contact-grid{grid-template-columns:1fr;gap:32px}
+  .goal-band{grid-template-columns:1fr;gap:32px;padding:40px 24px}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .mission-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .mkt-cards{grid-template-columns:1fr}
+  .mkt-wrap{padding:28px 20px}
+  .stats-grid{grid-template-columns:repeat(3,1fr);max-width:100%}
+  .counters-row{grid-template-columns:repeat(3,1fr)}
+  .ft-grid{grid-template-columns:1fr;gap:24px}
+
+  /* IMAGES */
+  .ab-main{height:280px}
+  .why-main{height:280px}
+
+  /* CONTACT */
+  .ci{padding:32px 24px}
+  .cf{padding:24px 18px}
+  .f-row{grid-template-columns:1fr}
+
+  /* FOOTER */
+  .ft-logo{height:140px}
+}
+
+@media(max-width:480px){
+  .hero-h1{font-size:1.5rem}
+  .hs{padding:16px 10px}
+  .hs-n{font-size:1.3rem}
+  .hs-l{font-size:.62rem}
+  .mission-grid{grid-template-columns:1fr}
+  .svc-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .feat-grid{grid-template-columns:1fr}
+  .sc{padding:24px 14px}
+  .sc-n{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Float WA -->
+<a href="https://wa.me/966599990884" class="float-wa" target="_blank" rel="noopener" aria-label="واتساب">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- Drawer -->
+<div class="drawer" id="drawer">
+  <button class="d-close" onclick="closeD()"><i class="fas fa-times"></i></button>
+  <a href="#about"    onclick="closeD()">من نحن</a>
+  <a href="#mission"  onclick="closeD()">رسالتنا</a>
+  <a href="#services" onclick="closeD()">خدماتنا</a>
+  <a href="#stats"    onclick="closeD()">إنجازاتنا</a>
+  <a href="#contact"  onclick="closeD()">تواصل معنا</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="nav-logo" href="#home">
+      <img src="logoo1.png" alt="مجموعة عايض البقمي"/>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#vision">رؤيتنا</a></li>
+      <li><a href="#mission">رسالتنا</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#stats">إنجازاتنا</a></li>
+      <li><a href="#why">لماذا نحن</a></li>
+      <li><a href="#contact" class="nav-cta">تواصل معنا</a></li>
+    </ul>
+    <div class="burger" onclick="openD()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-body">
+    <div class="wrap">
+      <h1 class="hero-h1 rv" style="transition-delay:.1s">
+        مجموعة <em>عايض البقمي</em><br/>للتطوير والاستثمار العقاري
+      </h1>
+      <span class="hero-tag rv" style="transition-delay:.2s;margin-bottom:28px">
+        <i class="fas fa-location-dot" style="font-size:.65rem"></i>
+        مجموعة عقارية متكاملة — الطائف
+      </span>
+      <p class="hero-sub rv" style="transition-delay:.3s">
+        حيث تلتقي الخبرة العقارية لنصنع تطويراً واستثماراً متكاملاً يرتقي بتجربة التملك ويحوّل كل فرصة إلى قيمة حقيقية.
+      </p>
+      <div class="hero-btns rv" style="transition-delay:.4s">
+        <a href="#contact" class="btn btn-gold"><i class="fas fa-phone-alt"></i> تواصل معنا</a>
+        <a href="#services" class="btn btn-outline-w"><i class="fas fa-compass"></i> استكشف خدماتنا</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs rv" style="transition-delay:.5s">
+        <div class="hs-n">+15</div>
+        <div class="hs-l">سنة خبرة في السوق العقاري</div>
+      </div>
+      <div class="hs rv" style="transition-delay:.6s">
+        <div class="hs-n">+1000</div>
+        <div class="hs-l">عميل راضٍ وموثوق</div>
+      </div>
+      <div class="hs rv" style="transition-delay:.65s">
+        <div class="hs-n">+50</div>
+        <div class="hs-l">شريك استراتيجي</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-img-col rv-r">
+        <img class="ab-main" src="works/person2.png" alt="عايض البقمي"/>
+        <div class="ab-line"></div>
+      </div>
+      <div class="rv-l">
+        <span class="eyebrow">من نحن</span>
+        <h2 class="title">مجموعة عايض البقمي<br/><em>للتطوير والاستثمار العقاري</em></h2>
+        <div class="dash"></div>
+        <p class="body">
+          حيث تلتقي كامل الخبرة العقارية لنصنع تطويراً واستثماراً متكاملاً يرتقي بتجربة التملك والاستثمار، ونحوّل كل فرصة إلى قيمة حقيقية.
+        </p>
+        <p class="body" style="margin-top:16px">
+          نؤمن بأن كل مشروع هو قصة نجاح جديدة، ونسعى دائماً لتقديم أعلى معايير الجودة في كل ما نقدمه لعملائنا وشركائنا الاستراتيجيين.
+        </p>
+        <div class="counters-row rv" style="transition-delay:.1s">
+          <div class="cnt">
+            <div class="cnt-n"><span class="counter" data-target="15">0</span><sup>+</sup></div>
+            <div class="cnt-l">سنة خبرة</div>
+          </div>
+          <div class="cnt">
+            <div class="cnt-n"><span class="counter" data-target="1000">0</span><sup>+</sup></div>
+            <div class="cnt-l">عميل راضٍ</div>
+          </div>
+          <div class="cnt">
+            <div class="cnt-n"><span class="counter" data-target="50">0</span><sup>+</sup></div>
+            <div class="cnt-l">شريك</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ VISION ══ -->
+<section class="sec-sm bg-soft" id="vision">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;margin-bottom:48px">
+      <span class="eyebrow">رؤيتنا ومهمتنا</span>
+      <h2 class="title">نبني المستقبل <em>بخطى راسخة</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="mc rv" style="transition-delay:.1s">
+        <div class="mc-num" style="background:var(--teal)"><i class="fas fa-eye" style="background:none;font-size:1rem;color:white;margin:0;display:inline"></i></div>
+        <h4 style="font-size:1.1rem;margin-bottom:12px">رؤيتنا</h4>
+        <p class="body" style="max-width:100%">الريادة في تقديم خدمات عقارية متكاملة، بمعايير حديثة تعيد تشكيل مفهوم السوق وتضع العميل في قلب كل إنجاز.</p>
+      </div>
+      <div class="mc rv" style="transition-delay:.2s">
+        <div class="mc-num" style="background:var(--gold)"><i class="fas fa-rocket" style="background:none;font-size:1rem;color:var(--ink);margin:0;display:inline"></i></div>
+        <h4 style="font-size:1.1rem;margin-bottom:12px">هدفنا</h4>
+        <p class="body" style="max-width:100%">تمكين عملائنا من تحقيق أفضل العوائد الاستثمارية وبناء استثمارات مستدامة تنمو بثبات في سوق متجدد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MISSION ══ -->
+<section class="sec" id="mission">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;margin-bottom:52px">
+      <span class="eyebrow">ما نقدمه</span>
+      <h2 class="title">محاور <em>رسالتنا</em></h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mc rv" style="transition-delay:.05s"><div class="mc-num">1</div><i class="fas fa-city"></i><h4>تطوير عقاري في قلب كل حي سكني داخل الطائف وخارجها</h4></div>
+      <div class="mc rv" style="transition-delay:.1s"><div class="mc-num">2</div><i class="fas fa-handshake"></i><h4>الوساطة العقارية بخبرة تمتد لأكثر من 15 عاماً وإدارة الأملاك</h4></div>
+      <div class="mc rv" style="transition-delay:.15s"><div class="mc-num">3</div><i class="fas fa-hard-hat"></i><h4>المقاولات العامة والحصول على تصنيف (ب) وريادة أعمال المقاولات المتكاملة</h4></div>
+      <div class="mc rv" style="transition-delay:.2s"><div class="mc-num">4</div><i class="fas fa-pencil-ruler"></i><h4>التصميم الداخلي والإدارة والتنفيذ وتحويل الأحلام إلى واقع</h4></div>
+      <div class="mc rv" style="transition-delay:.25s"><div class="mc-num">5</div><i class="fas fa-gavel"></i><h4>الإشراف على المزادات العقارية الكبرى</h4></div>
+      <div class="mc rv" style="transition-delay:.3s"><div class="mc-num">6</div><i class="fas fa-chart-line"></i><h4>الاستثمارات التجارية</h4></div>
+      <div class="mc rv" style="transition-delay:.35s"><div class="mc-num">7</div><i class="fas fa-network-wired"></i><h4>تطوير البنية التحتية المتكاملة</h4></div>
+      <div class="mc rv" style="transition-delay:.4s"><div class="mc-num">8</div><i class="fas fa-map-marked-alt"></i><h4>إدارة وتسويق وبيع وتنفيذ المخططات الكبرى</h4></div>
+      <div class="mc rv" style="transition-delay:.45s"><div class="mc-num">9</div><i class="fas fa-briefcase"></i><h4>التعاملات التجارية والعلامات التجارية الكبرى</h4></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GOAL ══ -->
+<section class="sec" id="goal">
+  <div class="wrap">
+    <div class="goal-band rv">
+      <div>
+        <span class="eyebrow">هدفنا</span>
+        <h2 class="title" style="margin-bottom:8px">نحوّل كل فرصة<br/><em>إلى قيمة حقيقية</em></h2>
+        <div class="dash"></div>
+        <p class="body">تمكين عملائنا من تحقيق أفضل العوائد الاستثمارية الممكنة وبناء استثمارات مستدامة تنمو بثبات في سوق متجدد، مع توطيد العلاقات الاستراتيجية مع جميع الشركات العقارية.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat"><i class="fas fa-check"></i>خبرة طويلة في السوق</div>
+        <div class="feat"><i class="fas fa-check"></i>حلول متكاملة</div>
+        <div class="feat"><i class="fas fa-check"></i>فريق متخصص</div>
+        <div class="feat"><i class="fas fa-check"></i>شبكة علاقات قوية</div>
+        <div class="feat"><i class="fas fa-check"></i>تنفيذ احترافي</div>
+        <div class="feat"><i class="fas fa-check"></i>استثمارات متنوعة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section class="sec-sm bg-soft" id="services">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;margin-bottom:48px">
+      <span class="eyebrow">ما نقدمه لكم</span>
+      <h2 class="title">خدماتنا <em>المتكاملة</em></h2>
+    </div>
+    <div class="svc-grid">
+      <div class="svc rv" style="transition-delay:.05s"><div class="svc-ic"><i class="fas fa-building"></i></div><h3>الاستثمار والتطوير العقاري</h3><p>حلول استثمارية متكاملة لتنمية ثروتك العقارية</p></div>
+      <div class="svc rv" style="transition-delay:.1s"><div class="svc-ic"><i class="fas fa-tasks"></i></div><h3>إدارة مشاريع البيع والاستثمار</h3><p>إدارة احترافية من الفكرة حتى التسليم</p></div>
+      <div class="svc rv" style="transition-delay:.15s"><div class="svc-ic"><i class="fas fa-handshake"></i></div><h3>الوساطة العقارية</h3><p>خبرة 15+ سنة في توسيط أفضل الصفقات</p></div>
+      <div class="svc rv" style="transition-delay:.2s"><div class="svc-ic"><i class="fas fa-store"></i></div><h3>الإيجار التجاري</h3><p>مساحات متميزة في أفضل المواقع الاستراتيجية</p></div>
+      <div class="svc rv" style="transition-delay:.25s"><div class="svc-ic"><i class="fas fa-landmark"></i></div><h3>إدارة الأملاك والأسواق</h3><p>إدارة متكاملة لأملاكك وأصولك العقارية</p></div>
+      <div class="svc rv" style="transition-delay:.3s"><div class="svc-ic"><i class="fas fa-drafting-compass"></i></div><h3>بناء وتسويق المشاريع</h3><p>من التصميم إلى التسليم بأعلى معايير الجودة</p></div>
+      <div class="svc rv" style="transition-delay:.35s"><div class="svc-ic"><i class="fas fa-hard-hat"></i></div><h3>المقاولات العامة</h3><p>تنفيذ مشاريع بتصنيف احترافي معتمد</p></div>
+      <div class="svc rv" style="transition-delay:.4s"><div class="svc-ic"><i class="fas fa-couch"></i></div><h3>التصميم الداخلي</h3><p>نحوّل أحلامك إلى مساحات استثنائية</p></div>
+    </div>
+    <!-- التسويق -->
+    <div class="mkt-wrap rv">
+      <span class="eyebrow">قسم متخصص</span>
+      <h2 class="title" style="font-size:1.6rem">حلول <em>التسويق العقاري</em></h2>
+      <div class="mkt-cards">
+        <div class="mkt-c"><div class="mi"><i class="fas fa-briefcase"></i></div><h4>التسويق التجاري</h4></div>
+        <div class="mkt-c"><div class="mi"><i class="fas fa-home"></i></div><h4>التسويق السكني</h4></div>
+        <div class="mkt-c"><div class="mi"><i class="fas fa-key"></i></div><h4>التسويق الإيجاري</h4></div>
+        <div class="mkt-c"><div class="mi"><i class="fas fa-road"></i></div><h4>تسويق البوليفارد</h4></div>
+        <div class="mkt-c"><div class="mi"><i class="fas fa-city"></i></div><h4>تسويق المجمعات السكنية</h4></div>
+        <div class="mkt-c"><div class="mi"><i class="fas fa-store-alt"></i></div><h4>تسويق المجمعات التجارية</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<section class="sec" id="stats">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;margin-bottom:48px">
+      <span class="eyebrow">بالأرقام</span>
+      <h2 class="title">إنجازاتنا <em>تتحدث عنا</em></h2>
+    </div>
+    <div class="stats-grid">
+      <div class="sc rv" style="transition-delay:.05s"><i class="fas fa-calendar-check"></i><div class="sc-n"><span class="counter" data-target="15">0</span><sup>+</sup></div><div class="sc-l">سنة خبرة في السوق العقاري</div></div>
+      <div class="sc rv" style="transition-delay:.15s"><i class="fas fa-users"></i><div class="sc-n"><span class="counter" data-target="1000">0</span><sup>+</sup></div><div class="sc-l">عميل راضٍ وموثوق</div></div>
+      <div class="sc rv" style="transition-delay:.2s"><i class="fas fa-hands-helping"></i><div class="sc-n"><span class="counter" data-target="50">0</span><sup>+</sup></div><div class="sc-l">شريك استراتيجي</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY ══ -->
+<section class="sec bg-soft" id="why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="why-img-col rv-r">
+        <img class="why-main" src="works/person1.png" alt="عايض البقمي"/>
+      </div>
+      <div class="rv-l">
+        <span class="eyebrow">ميزتنا التنافسية</span>
+        <h2 class="title">لماذا <em>نحن؟</em></h2>
+        <div class="dash"></div>
+        <div class="why-list">
+          <div class="wr"><div class="wr-ic"><i class="fas fa-trophy"></i></div><div class="wr-tx"><h4>خبرة طويلة في السوق العقاري</h4><p>أكثر من 15 عاماً من الخبرة الموثوقة في أسواق المملكة</p></div></div>
+          <div class="wr"><div class="wr-ic"><i class="fas fa-layer-group"></i></div><div class="wr-tx"><h4>حلول متكاملة تحت سقف واحد</h4><p>من التطوير إلى التسليم، نحن شريكك الكامل</p></div></div>
+          <div class="wr"><div class="wr-ic"><i class="fas fa-users-cog"></i></div><div class="wr-tx"><h4>فريق متخصص ومحترف</h4><p>كوادر مدربة على أعلى مستوى من الكفاءة</p></div></div>
+          <div class="wr"><div class="wr-ic"><i class="fas fa-network-wired"></i></div><div class="wr-tx"><h4>شبكة علاقات استراتيجية قوية</h4><p>شراكات مع كبرى الشركات والمطورين</p></div></div>
+          <div class="wr"><div class="wr-ic"><i class="fas fa-chart-bar"></i></div><div class="wr-tx"><h4>استثمارات عقارية وتجارية متنوعة</h4><p>محفظة متنوعة تضمن أفضل العوائد</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="sec" id="contact" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;margin-bottom:52px">
+      <span class="eyebrow">نحن هنا لخدمتكم</span>
+      <h2 class="title">تواصل <em>معنا</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="ci rv-r">
+        <h3>ابدأ رحلتك العقارية معنا</h3>
+        <p>فريقنا المتخصص جاهز لمساعدتكم في اتخاذ القرار الاستثماري الأمثل. تواصلوا معنا عبر أي من القنوات التالية.</p>
+        <div class="ch-btns">
+          <a href="https://wa.me/966599990884" class="ch wa" target="_blank" rel="noopener">
+            <div class="ch-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="ch-txt"><span class="ch-lbl">تواصل عبر</span><span class="ch-val">واتساب</span></div>
+          </a>
+          <a href="tel:+966599990884" class="ch ph">
+            <div class="ch-icon"><i class="fas fa-phone-alt"></i></div>
+            <div class="ch-txt"><span class="ch-lbl">اتصل بنا</span><span class="ch-val">+966 599 990 884</span></div>
+          </a>
+          <a href="https://x.com/__199QR" class="ch xb" target="_blank" rel="noopener">
+            <div class="ch-icon"><i class="fab fa-x-twitter"></i></div>
+            <div class="ch-txt"><span class="ch-lbl">تابعنا على</span><span class="ch-val">@__199QR</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="cf rv-l">
+        <h3>أرسل لنا رسالة</h3>
+        <form onsubmit="return false">
+          <div class="f-row">
+            <div class="fg"><label>الاسم الكامل</label><input type="text" placeholder="أدخل اسمك"/></div>
+            <div class="fg"><label>رقم الجوال</label><input type="tel" placeholder="05xxxxxxxx"/></div>
+          </div>
+          <div class="fg"><label>البريد الإلكتروني</label><input type="email" placeholder="example@email.com"/></div>
+          <div class="fg"><label>رسالتك</label><textarea placeholder="اكتب رسالتك هنا..."></textarea></div>
+          <button type="submit" class="fsub"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <img class="ft-logo" src="logoo1.png" alt="مجموعة عايض البقمي"/>
+        <p class="ft-p">مجموعة عايض البقمي للتطوير والاستثمار العقاري — شريكك الموثوق في كل خطوة نحو الاستثمار الناجح.</p>
+        <div class="ft-socs">
+          <a href="https://x.com/__199QR" class="ft-soc" target="_blank"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://wa.me/966599990884" class="ft-soc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="ft-soc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="ft-soc"><i class="fab fa-snapchat-ghost"></i></a>
+          <a href="#" class="ft-soc"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>روابط سريعة</h4>
+        <ul class="ft-links">
+          <li><a href="#about">من نحن</a></li>
+          <li><a href="#vision">رؤيتنا</a></li>
+          <li><a href="#mission">رسالتنا</a></li>
+          <li><a href="#services">خدماتنا</a></li>
+          <li><a href="#stats">إنجازاتنا</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>خدماتنا</h4>
+        <ul class="ft-links">
+          <li><a href="#services">التطوير العقاري</a></li>
+          <li><a href="#services">الوساطة العقارية</a></li>
+          <li><a href="#services">المقاولات العامة</a></li>
+          <li><a href="#services">التصميم الداخلي</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="ft-btm">
+    <div class="wrap">
+      © جميع الحقوق محفوظة <strong>2025</strong> — مجموعة <strong>عايض البقمي</strong> للتطوير والاستثمار العقاري
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Nav */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>40));
+
+/* Drawer */
+function openD(){document.getElementById('drawer').classList.add('open')}
+function closeD(){document.getElementById('drawer').classList.remove('open')}
+
+/* Reveal */
+const rvEls=document.querySelectorAll('.rv,.rv-l,.rv-r');
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('up')})
+},{threshold:.1});
+rvEls.forEach(el=>obs.observe(el));
+
+/* Counters */
+function animCnt(el){
+  const t=+el.dataset.target,d=1800,s=t/(d/16);
+  let c=0;
+  const id=setInterval(()=>{
+    c+=s;if(c>=t){c=t;clearInterval(id)}
+    el.textContent=Math.floor(c).toLocaleString('ar-SA');
+  },16);
+}
+document.querySelectorAll('.counter').forEach(c=>{
+  new IntersectionObserver(([e])=>{
+    if(e.isIntersecting&&!c.dataset.done){c.dataset.done=1;animCnt(c)}
+  },{threshold:.5}).observe(c);
+});
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+/* Form */
+document.querySelector('.fsub').addEventListener('click',function(){
+  this.innerHTML='<i class="fas fa-check"></i> تم الإرسال بنجاح!';
+  this.style.background='#2ecc71';
+  setTimeout(()=>{
+    this.innerHTML='<i class="fas fa-paper-plane"></i> إرسال الرسالة';
+    this.style.background='';
+  },3000);
+});
+</script>
+</body>
+</html>
